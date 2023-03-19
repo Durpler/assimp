@@ -190,8 +190,8 @@ ASSIMP_API aiScene::~aiScene() {
     
     mMetaData = nullptr;
     if (mVRMMeta) {
-        VRM::ReleaseVRMMeta(reinterpret_cast<VRM::VRMMetadata*>(mVRMMeta));
-
+        //VRM::ReleaseVRMMeta(reinterpret_cast<VRM::VRMMetadata*>(mVRMMeta));
+        free(mVRMMeta);
         mVRMMeta = nullptr;
     }
 
