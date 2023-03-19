@@ -1871,7 +1871,7 @@ inline void GLTF2VRMMetadata::Read(Document& doc, Asset& r)
     if (Value* mp = FindArrayLocal(*vrm, "materialProperties")) {
         vrmdata->materialNum = mp->Size();
         vrmdata->material = new VRM::VRMMaterial[vrmdata->materialNum];
-        memset(vrmdata->material, 0, sizeof(VRM::VRMMaterial) * vrmdata->materialNum);
+        vrmdata->material = nullptr; 
 
         for (uint32_t m = 0; m < mp->Size(); ++m) {
             std::string name, shaderName;
@@ -2382,6 +2382,7 @@ inline void Asset::Load(const std::string &pFile, bool isBinary)
 
     {
         if (Value* animMeshesArray = FindArray(doc, "animations")) {
+            animMeshesArray[0] = animMeshesArray[0]; // dummy asignment to use the value?
             animations.Retrieve(0);
         }
     }

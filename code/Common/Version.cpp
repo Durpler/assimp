@@ -44,6 +44,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "ScenePrivate.h"
 #include <assimp/scene.h>
 #include <assimp/version.h>
+#include <assimp/vrm/vrmmeta.h>
 
 #include "revision.h"
 
@@ -135,10 +136,10 @@ ASSIMP_API aiScene::aiScene() :
         mNumCameras(0),
         mCameras(nullptr),
         mMetaData(nullptr),
+        mVRMMeta(nullptr),
         mName(),
         mNumSkeletons(0),
         mSkeletons(nullptr),
-        mVRMMeta(nullptr),
         mPrivate(new Assimp::ScenePrivateData()) {
     // empty
 }
@@ -189,8 +190,7 @@ ASSIMP_API aiScene::~aiScene() {
     
     mMetaData = nullptr;
     if (mVRMMeta) {
-        extern void VRM_ReleaseVRMMeta(void* p);
-        VRM_ReleaseVRMMeta(mVRMMeta);
+        VRM::ReleaseVRMMeta(reinterpret_cast<VRM::VRMMetadata*>(mVRMMeta));
 
         mVRMMeta = nullptr;
     }

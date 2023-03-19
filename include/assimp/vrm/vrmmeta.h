@@ -288,7 +288,7 @@ extern "C" {
 					p->colliderGroups[i].CopyFrom(colliderGroups[i]);
 				}
 
-                for (int i=0; i<sizeof(humanoidBone)/sizeof(humanoidBone[0]); ++i){
+                for (long unsigned int i=0; i<sizeof(humanoidBone)/sizeof(humanoidBone[0]); ++i){
 					p->humanoidBone[i] = humanoidBone[i];
                 }
 
