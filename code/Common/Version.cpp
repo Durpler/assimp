@@ -187,7 +187,7 @@ ASSIMP_API aiScene::~aiScene() {
     aiMetadata::Dealloc(mMetaData);
 
     delete[] mSkeletons;
-    
+
     mMetaData = nullptr;
     if (mVRMMeta) {
         VRM::VRMMetadata* meta = reinterpret_cast<VRM::VRMMetadata*>(mVRMMeta);
@@ -199,6 +199,6 @@ ASSIMP_API aiScene::~aiScene() {
         mVRMMeta = nullptr;
     }
 
-    
+
     delete static_cast<Assimp::ScenePrivateData *>(mPrivate);
 }
